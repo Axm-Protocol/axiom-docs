@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXIOM — AI-Powered RWA Protocol on Solana</title>
+<meta name="description" content="AXIOM ($AXM) documentation — AI-Powered Real World Asset Protocol on Solana. Explore tokenomics, staking, governance, and developer resources.">
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AXIOM Protocol Documentation",
+  "url": "https://axiomprotocol.io",
+  "creator": {
+    "@type": "SoftwareApplication",
+    "name": "Perplexity Computer",
+    "url": "https://www.perplexity.ai/computer"
+  }
+}
+</script>
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0e1a;
+  --bg-sidebar: #080c16;
+  --bg-surface: #0f1525;
+  --bg-code: #0d1117;
+  --bg-hover: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.06);
+  --border-strong: rgba(255,255,255,0.1);
+  --text: #e0e0e0;
+  --text-muted: #8892a4;
+  --text-heading: #ffffff;
+  --cyan: #00e5ff;
+  --purple: #9945ff;
+  --gold: #ffd740;
+  --red: #ff5252;
+  --green: #69f0ae;
+  --sidebar-w: 270px;
+  --toc-w: 220px;
+  --content-max: 820px;
+  --font-display: 'Cabinet Grotesk', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+  font-weight: 400;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a { color: var(--cyan); text-decoration: none; transition: opacity 0.15s; }
+a:hover { opacity: 0.8; }
+
+::selection { background: rgba(0,229,255,0.2); color: #fff; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ===== LAYOUT ===== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease);
+}
+
+.sidebar-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sidebar-logo svg {
+  flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+}
+
+.sidebar-logo-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--cyan);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-search {
+  position: relative;
+}
+
+.sidebar-search input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px 8px 36px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sidebar-search input::placeholder { color: var(--text-muted); }
+.sidebar-search input:focus { border-color: var(--cyan); }
+
+.sidebar-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  width: 14px;
+  height: 14px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 0;
+}
+
+.sidebar-section {
+  margin-bottom: 4px;
+}
+
+.sidebar-section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 20px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.sidebar-section-toggle:hover { color: var(--text); }
+
+.sidebar-section-toggle .chevron {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.2s var(--ease);
+  flex-shrink: 0;
+}
+
+.sidebar-section.collapsed .chevron { transform: rotate(-90deg); }
+.sidebar-section.collapsed .sidebar-section-items { display: none; }
+
+.sidebar-section-items {
+  padding: 2px 0 8px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 6px 20px 6px 28px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 400;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+  opacity: 1;
+}
+
+.sidebar-link.active {
+  color: var(--cyan);
+  border-left-color: var(--cyan);
+  background: rgba(0,229,255,0.05);
+  font-weight: 500;
+}
+
+.sidebar-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sidebar-footer a {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.main-inner {
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--toc-w) + 80px);
+  display: flex;
+  padding: 0 40px;
+}
+
+.content {
+  flex: 1;
+  max-width: var(--content-max);
+  padding: 32px 0 80px;
+  min-width: 0;
+}
+
+/* ===== TOC (RIGHT) ===== */
+.toc {
+  width: var(--toc-w);
+  flex-shrink: 0;
+  padding-top: 80px;
+  margin-left: 40px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.toc-title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 0 4px 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-left: 1px solid var(--border);
+  transition: all 0.15s;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.toc-link:hover { color: var(--text); opacity: 1; }
+.toc-link.active {
+  color: var(--cyan);
+  border-left-color: var(--cyan);
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--cyan); }
+.breadcrumb .sep { opacity: 0.4; }
+
+/* ===== ARTICLE CONTENT ===== */
+.article h1 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.article h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 20px;
+}
+
+.article h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 28px 0 12px;
+  scroll-margin-top: 20px;
+}
+
+.article h2 .heading-anchor,
+.article h3 .heading-anchor {
+  opacity: 0;
+  margin-left: 6px;
+  color: var(--text-muted);
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.article h2:hover .heading-anchor,
+.article h3:hover .heading-anchor { opacity: 0.5; }
+
+.article h2 .heading-anchor:hover,
+.article h3 .heading-anchor:hover { opacity: 1; color: var(--cyan); }
+
+.article p {
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.article ul, .article ol {
+  margin: 0 0 16px 20px;
+}
+
+.article li {
+  margin-bottom: 6px;
+}
+
+.article strong { color: var(--text-heading); font-weight: 600; }
+
+.article .lead {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+/* ===== CODE BLOCKS ===== */
+.code-block {
+  position: relative;
+  margin: 16px 0 24px;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.copy-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+/* Syntax highlight classes */
+.tok-kw { color: #ff79c6; }
+.tok-str { color: #f1fa8c; }
+.tok-fn { color: #8be9fd; }
+.tok-cm { color: #6272a4; }
+.tok-num { color: #bd93f9; }
+.tok-op { color: #ff79c6; }
+.tok-const { color: #50fa7b; }
+.tok-type { color: #8be9fd; }
+
+/* Inline code */
+.article code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--cyan);
+}
+
+/* ===== CALLOUT BOXES ===== */
+.callout {
+  margin: 20px 0 24px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border-left: 3px solid;
+  background: var(--bg-surface);
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.callout-body {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.callout.info { border-color: var(--cyan); }
+.callout.info .callout-title { color: var(--cyan); }
+.callout.warning { border-color: var(--gold); }
+.callout.warning .callout-title { color: var(--gold); }
+.callout.danger { border-color: var(--red); }
+.callout.danger .callout-title { color: var(--red); }
+.callout.tip { border-color: var(--green); }
+.callout.tip .callout-title { color: var(--green); }
+
+/* ===== TABLES ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.article table th {
+  background: rgba(255,255,255,0.04);
+  text-align: left;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: var(--text-heading);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.article table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.article table tr:last-child td { border-bottom: none; }
+.article table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+/* ===== FEATURE GRID ===== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-card:hover {
+  border-color: rgba(0,229,255,0.2);
+  transform: translateY(-2px);
+}
+
+.feature-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.feature-card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-heading);
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  margin: 24px 0;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan), var(--purple));
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 2px solid var(--bg);
+  z-index: 1;
+}
+
+.timeline-item:nth-child(2)::before { background: var(--purple); }
+.timeline-item:nth-child(3)::before { background: var(--gold); }
+.timeline-item:nth-child(4)::before { background: var(--green); }
+.timeline-item:nth-child(5)::before { background: var(--cyan); }
+
+.timeline-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+
+.timeline-content h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===== ACCORDION (FAQ) ===== */
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  color: var(--text-heading);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+
+.accordion-trigger:hover { color: var(--cyan); }
+
+.accordion-trigger .acc-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  transition: transform 0.2s var(--ease);
+  flex-shrink: 0;
+}
+
+.accordion-item.open .accordion-trigger .acc-icon { transform: rotate(180deg); }
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s var(--ease);
+}
+
+.accordion-body-inner {
+  padding: 0 20px 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ===== LINK CARDS GRID ===== */
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.link-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+.link-card-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.link-card-text {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-heading);
+}
+
+.link-card-url {
+  font-size: 12px;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== STEPS ===== */
+.steps {
+  counter-reset: steps;
+  margin: 20px 0;
+}
+
+.step {
+  counter-increment: steps;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 24px;
+}
+
+.step::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background: rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+  text-align: center;
+  padding-top: 1px;
+}
+
+.step h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+
+.step p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===== FUNC LIST ===== */
+.func-item {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.func-sig {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--cyan);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.func-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.func-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.func-badge.admin {
+  background: rgba(153,69,255,0.15);
+  color: var(--purple);
+}
+
+/* ===== PREV / NEXT ===== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.page-nav-item {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+  max-width: 48%;
+}
+
+.page-nav-item:hover { border-color: var(--cyan); opacity: 1; }
+.page-nav-item.next { margin-left: auto; text-align: right; }
+
+.page-nav-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.page-nav-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== SEARCH MODAL ===== */
+.search-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 500;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  backdrop-filter: blur(4px);
+}
+
+.search-modal-overlay.open { display: flex; }
+
+.search-modal {
+  width: 600px;
+  max-width: 90vw;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.search-modal-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-modal-input-wrap svg { color: var(--text-muted); flex-shrink: 0; }
+
+.search-modal-input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-heading);
+  font-family: var(--font-body);
+  font-size: 16px;
+  outline: none;
+}
+
+.search-modal-input::placeholder { color: var(--text-muted); }
+
+.search-modal-results {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.search-result-item {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.1s;
+}
+
+.search-result-item:hover, .search-result-item.focused {
+  background: rgba(0,229,255,0.06);
+  opacity: 1;
+}
+
+.search-result-section {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.search-result-title {
+  font-weight: 600;
+  color: var(--text-heading);
+  font-size: 14px;
+}
+
+.search-result-snippet {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-no-results {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.search-modal-footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.search-modal-footer kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+.mobile-overlay.open { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .toc { display: none; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  .hamburger { display: flex; }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .main-inner {
+    padding: 0 16px;
+  }
+
+  .content {
+    padding-top: 60px;
+  }
+
+  .article h1 { font-size: 28px; }
+  .article h2 { font-size: 20px; }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-nav {
+    flex-direction: column;
+  }
+
+  .page-nav-item { max-width: 100%; }
+  .page-nav-item.next { text-align: left; }
+
+  .link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .sidebar, .toc, .hamburger, .page-nav, .copy-btn, .search-modal-overlay { display: none !important; }
+  .main { margin-left: 0 !important; }
+  body { background: #fff; color: #111; font-size: 12pt; }
+  .article h1, .article h2, .article h3, .article strong { color: #111; }
+  .callout { border: 1px solid #ccc; background: #f9f9f9; }
+  .code-block { border: 1px solid #ccc; background: #f5f5f5; }
+  .feature-card, .accordion-item { border: 1px solid #ccc; }
+  a { color: #111; text-decoration: underline; }
+}
+
+/* Page transition */
+.content { animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- Mobile hamburger -->
+<button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <!-- AXIOM Logo SVG -->
+      <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="38" height="38" rx="8" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <path d="M20 6L8 32h4.5l2.5-5.5h10L27.5 32H32L20 6z" fill="#00e5ff" opacity="0.9"/>
+        <path d="M17 22l3-7 3 7" stroke="#0a0e1a" stroke-width="1.5" fill="none"/>
+        <circle cx="10" cy="10" r="2" fill="#9945ff" opacity="0.7"/>
+        <circle cx="30" cy="10" r="2" fill="#9945ff" opacity="0.7"/>
+        <circle cx="10" cy="30" r="1.5" fill="#9945ff" opacity="0.5"/>
+        <circle cx="30" cy="30" r="1.5" fill="#9945ff" opacity="0.5"/>
+        <line x1="10" y1="10" x2="30" y2="10" stroke="#9945ff" stroke-width="0.5" opacity="0.3"/>
+        <line x1="10" y1="10" x2="10" y2="30" stroke="#9945ff" stroke-width="0.5" opacity="0.3"/>
+        <line x1="30" y1="10" x2="30" y2="30" stroke="#9945ff" stroke-width="0.5" opacity="0.3"/>
+      </svg>
+      <div>
+        <div class="sidebar-logo-text">AXIOM</div>
+        <div class="sidebar-logo-tag">$AXM Protocol</div>
+      </div>
+    </div>
+    <div class="sidebar-search">
+      <svg class="sidebar-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="sidebarSearch" placeholder="Search docs…  ⌘K" readonly onclick="openSearch()">
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav"></nav>
+  <div class="sidebar-footer">
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="main-inner">
+    <div class="content" id="content">
+      <!-- Rendered dynamically -->
+    </div>
+    <aside class="toc" id="toc"></aside>
+  </div>
+</main>
+
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="search-modal-overlay" id="searchOverlay">
+  <div class="search-modal" onclick="event.stopPropagation()">
+    <div class="search-modal-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-modal-input" id="searchInput" placeholder="Search documentation…">
+    </div>
+    <div class="search-modal-results" id="searchResults"></div>
+    <div class="search-modal-footer">
+      <span><kbd>↑↓</kbd> Navigate</span>
+      <span><kbd>↵</kbd> Open</span>
+      <span><kbd>Esc</kbd> Close</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== PAGE DATA =====
+const SECTIONS = [
+  {
+    title: 'Getting Started',
+    pages: [
+      { id: 'introduction', title: 'What is AXIOM?', icon: '📘' },
+      { id: 'quick-start', title: 'Quick Start Guide', icon: '🚀' },
+      { id: 'wallets', title: 'Wallet Setup', icon: '👛' },
+    ]
+  },
+  {
+    title: '$AXM Token',
+    pages: [
+      { id: 'token-utility', title: 'Token Utility', icon: '⚡' },
+      { id: 'tokenomics', title: 'Tokenomics', icon: '📊' },
+      { id: 'presale', title: 'Presale Details', icon: '💰' },
+      { id: 'trading', title: 'Trading on Meteora', icon: '📈' },
+      { id: 'staking', title: 'Staking & Rewards', icon: '🔒' },
+      { id: 'governance', title: 'Governance', icon: '🏛️' },
+    ]
+  },
+  {
+    title: 'Using AXIOM',
+    pages: [
+      { id: 'ai-agents', title: 'AI Agent Marketplace', icon: '🤖' },
+      { id: 'rwa-assets', title: 'Real World Assets', icon: '🏠' },
+      { id: 'roadmap', title: 'Roadmap', icon: '🗺️' },
+    ]
+  },
+  {
+    title: 'Developers',
+    pages: [
+      { id: 'dev-overview', title: 'Developer Overview', icon: '🛠️' },
+      { id: 'sdk-guide', title: 'SDK & Quick Start', icon: '📦' },
+      { id: 'building-agents', title: 'Building AI Agents', icon: '🧠' },
+      { id: 'smart-contracts', title: 'Smart Contracts', icon: '📜' },
+      { id: 'meteora-integration', title: 'Meteora Integration', icon: '🌊' },
+      { id: 'api-reference', title: 'API Reference', icon: '⚡' },
+    ]
+  },
+  {
+    title: 'Resources',
+    pages: [
+      { id: 'faq', title: 'FAQ', icon: '❓' },
+      { id: 'security', title: 'Security', icon: '🛡️' },
+      { id: 'links', title: 'Official Links', icon: '🔗' },
+    ]
+  }
+];
+
+const allPages = SECTIONS.flatMap(s => s.pages.map(p => ({ ...p, section: s.title })));
+
+function getPageContent(id) {
+  const pages = {
+// ===== INTRODUCTION =====
+'introduction': `
+<p class="lead">AXIOM ($AXM) is the native token powering an AI-driven protocol for autonomous real-world asset management on Solana. Stake AXM to deploy AI agents, earn rewards, govern the protocol, and access tokenized real estate, commodities, and infrastructure.</p>
+<p>Built on <strong>Solana</strong> for speed (400ms finality) and cost (&lt;$0.01 per transaction), AXIOM brings institutional-grade RWA management to DeFi through autonomous AI agents.</p>
+<p>The <code>AXM</code> token governs the protocol, enables staking rewards, and powers the AI agent marketplace.</p>
+
+<h2 id="key-features">The $AXM Token</h2>
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(0,229,255,0.1)">🤖</div>
+    <h4>AI Agent Marketplace</h4>
+    <p>Deploy and monetise autonomous AI agents that manage real-world assets on-chain.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(153,69,255,0.1)">🏠</div>
+    <h4>Real World Assets</h4>
+    <p>Tokenized RWA exposure with on-chain verification — real estate, commodities, and infrastructure.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(255,215,64,0.1)">💎</div>
+    <h4>Staking Rewards</h4>
+    <p>20% of total supply dedicated to staking incentives. Earn rewards by securing the network.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(105,240,174,0.1)">🏛️</div>
+    <h4>Governance</h4>
+    <p>Token-weighted voting on protocol upgrades, treasury spending, and marketplace rules.</p>
+  </div>
+</div>
+
+<h2 id="why-axiom">Why AXIOM?</h2>
+<p>Traditional RWA management requires armies of middlemen — brokers, custodians, auditors. AXIOM replaces these with transparent, autonomous AI agents that operate 24/7 on-chain. Every decision is verifiable, every transaction is recorded, and every token holder has a voice.</p>
+<p>The protocol leverages Solana's high throughput to enable real-time asset management at a fraction of traditional costs, making institutional-grade RWA strategies accessible to everyone.</p>
+
+<h2 id="liquidity">Permanent Liquidity</h2>
+<p>AXM liquidity is permanently locked on <strong>Meteora DAMM v1</strong>. Unlike traditional LP burns, Meteora's lock preserves fee claim rights — the protocol earns trading fees on locked liquidity forever. See <a href="#/trading">Trading on Meteora</a> for details.</p>
+
+<div class="callout info">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Token Contract</div>
+  <div class="callout-body">AXM uses the <strong>Token-2022</strong> standard. Total supply: 1,000,000,000. Mint authority permanently revoked — no new tokens can ever be created.</div>
+</div>
+`,
+
+// ===== QUICK START =====
+'quick-start': `
+<p class="lead">Get started with AXIOM in five simple steps. From wallet setup to staking, this guide covers everything you need to join the AXIOM ecosystem.</p>
+
+<div class="callout info">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Presale is LIVE</div>
+  <div class="callout-body">The presale is LIVE from <strong>March 25–28, 2026</strong>. Hard cap: 1,000 SOL. Soft cap: 200 SOL. Don't miss it!</div>
+</div>
+
+<h2 id="setup-steps">Setup Steps</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Set Up a Solana Wallet</h4>
+    <p>Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a> wallet. Fund it with SOL from any major exchange (Coinbase, Binance, Kraken).</p>
+  </div>
+  <div class="step">
+    <h4>Connect to AXIOM</h4>
+    <p>Visit the <a href="https://axiomprotocol.io/launch">AXIOM Launchpad</a> and connect your Solana wallet. The site supports both Phantom and Solflare.</p>
+  </div>
+  <div class="step">
+    <h4>Participate in Presale</h4>
+    <p>Contribute SOL during the presale window. Minimum contribution is 0.1 SOL, maximum is 10 SOL per wallet. Enter the amount and confirm in your wallet.</p>
+  </div>
+  <div class="step">
+    <h4>Claim Tokens</h4>
+    <p>After the presale ends and the Meteora pool is live, return to the launchpad and click "Claim AXM." Your tokens will be sent directly to your connected wallet.</p>
+  </div>
+  <div class="step">
+    <h4>Stake &amp; Earn</h4>
+    <p>Stake your AXM tokens to earn a share of the 200M staking reward pool and participate in protocol governance. Visit the staking dashboard to get started.</p>
+  </div>
+</div>
+
+<h2 id="whats-next">What's Next?</h2>
+<p>Once you've claimed your AXM tokens, explore the ecosystem:</p>
+<ul>
+  <li>Read about <a href="#/tokenomics">Tokenomics</a> to understand the full token distribution</li>
+  <li>Learn how <a href="#/staking">Staking</a> works and start earning rewards</li>
+  <li>Join <a href="#/governance">Governance</a> to vote on protocol proposals</li>
+</ul>
+`,
+
+// ===== WALLETS =====
+'wallets': `
+<p class="lead">AXIOM supports Solana wallets compatible with the Token-2022 standard. Here's how to set up and use your wallet with AXIOM.</p>
+
+<h2 id="supported-wallets">Supported Wallets</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Wallet</th><th>Platform</th><th>Token-2022</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Phantom</strong></td><td>Browser, iOS, Android</td><td style="color:var(--green)">✓ Full support</td><td>Recommended — most popular Solana wallet</td></tr>
+    <tr><td><strong>Solflare</strong></td><td>Browser, iOS, Android</td><td style="color:var(--green)">✓ Full support</td><td>Advanced features, hardware wallet support</td></tr>
+    <tr><td><strong>Backpack</strong></td><td>Browser, iOS, Android</td><td style="color:var(--green)">✓ Full support</td><td>xNFT support, multi-chain</td></tr>
+    <tr><td><strong>Ledger</strong></td><td>Hardware</td><td style="color:var(--green)">✓ Via Solflare</td><td>Connect Ledger through Solflare for best experience</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="phantom-setup">Setting Up Phantom</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Install Phantom</h4>
+    <p>Go to <a href="https://phantom.app" target="_blank">phantom.app</a> and install the browser extension or mobile app.</p>
+  </div>
+  <div class="step">
+    <h4>Create a New Wallet</h4>
+    <p>Click "Create New Wallet." Write down your 12-word recovery phrase and store it securely offline. <strong>Never share this phrase.</strong></p>
+  </div>
+  <div class="step">
+    <h4>Fund with SOL</h4>
+    <p>Copy your wallet address. Withdraw SOL from your exchange using the <strong>Solana</strong> network (not ERC-20 or BEP-20).</p>
+  </div>
+  <div class="step">
+    <h4>Connect to AXIOM</h4>
+    <p>Visit the AXIOM launchpad or staking dashboard, click "Connect Wallet" and select Phantom.</p>
+  </div>
+</div>
+
+<div class="callout danger">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Security Warning</div>
+  <div class="callout-body">Never share your seed phrase or private key. AXIOM team will <strong>never</strong> ask for it. Only connect your wallet to official AXIOM domains.</div>
+</div>
+
+<h2 id="adding-axm">Adding AXM to Your Wallet</h2>
+<p>After claiming from the presale or buying on Meteora, AXM tokens appear automatically. If not visible:</p>
+<ul>
+  <li>Phantom: Settings → Manage Token List → search "AXM" or paste the mint address</li>
+  <li>Solflare: Click "Add Token" → paste the AXM mint address</li>
+</ul>
+`,
+
+// ===== TOKEN UTILITY =====
+'token-utility': `
+<p class="lead">$AXM is the core utility token of the AXIOM protocol. It powers every interaction in the ecosystem — from agent deployment to governance.</p>
+
+<h2 id="what-axm-does">What $AXM Does</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Use Case</th><th>Description</th><th>Requirement</th></tr></thead>
+  <tbody>
+    <tr><td><strong>🤖 Agent Deployment</strong></td><td>Stake AXM to deploy AI agents on the marketplace</td><td>Min. 10,000 AXM staked</td></tr>
+    <tr><td><strong>💎 Staking Rewards</strong></td><td>Earn from the 200M staking pool proportionally</td><td>Any amount</td></tr>
+    <tr><td><strong>🏛️ Governance Voting</strong></td><td>Vote on protocol upgrades, treasury spending, fees</td><td>Must be staked</td></tr>
+    <tr><td><strong>🏠 RWA Access</strong></td><td>Access tokenized real-world assets through AI agents</td><td>Hold AXM</td></tr>
+    <tr><td><strong>💰 Fee Sharing</strong></td><td>Stakers receive protocol revenue from marketplace fees</td><td>30-day min stake</td></tr>
+    <tr><td><strong>🎯 Marketplace</strong></td><td>Pay for premium agents or earn AXM by creating agents</td><td>Varies</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="token-flow">Token Flow</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Acquire AXM</h4>
+    <p>Buy during presale, trade on Meteora/Jupiter, or earn through staking rewards and marketplace revenue.</p>
+  </div>
+  <div class="step">
+    <h4>Stake for Access</h4>
+    <p>Stake AXM to unlock agent deployment, governance voting, and fee sharing.</p>
+  </div>
+  <div class="step">
+    <h4>Deploy or Use AI Agents</h4>
+    <p>Use staked AXM to deploy your own agents or subscribe to existing ones on the marketplace.</p>
+  </div>
+  <div class="step">
+    <h4>Earn Protocol Revenue</h4>
+    <p>Receive a share of marketplace fees, trading fees, and agent performance fees.</p>
+  </div>
+</div>
+
+<h2 id="supply-mechanics">Supply Mechanics</h2>
+<ul>
+  <li><strong>Fixed supply:</strong> 1,000,000,000 AXM — no inflation, ever. Mint authority permanently revoked.</li>
+  <li><strong>Deflationary:</strong> A portion of marketplace fees are burned, reducing circulating supply over time.</li>
+  <li><strong>Locked liquidity:</strong> 100M AXM permanently locked in the Meteora pool.</li>
+  <li><strong>Vested tokens:</strong> Team (20%) and advisor (5%) locked with on-chain vesting.</li>
+</ul>
+`,
+
+// ===== TOKENOMICS =====
+'tokenomics': `
+<p class="lead">AXIOM has a fixed supply of <strong>1,000,000,000 AXM</strong> (1 billion tokens). Mint authority is revoked after launch — no new tokens can ever be created.</p>
+
+<h2 id="distribution">Token Distribution</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Allocation</th><th>%</th><th>Amount</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Community &amp; Ecosystem</strong></td><td>25%</td><td>250,000,000</td><td>Grants, partnerships, community incentives</td></tr>
+    <tr><td><strong>Dev / Founding Team</strong></td><td>20%</td><td>200,000,000</td><td>4-year vest, 1-year cliff</td></tr>
+    <tr><td><strong>Staking Rewards</strong></td><td>20%</td><td>200,000,000</td><td>Distributed to stakers over time</td></tr>
+    <tr><td><strong>Protocol Treasury</strong></td><td>15%</td><td>150,000,000</td><td>DAO-controlled multi-sig</td></tr>
+    <tr><td><strong>Initial Liquidity (Meteora)</strong></td><td>10%</td><td>100,000,000</td><td>Permanently locked on Meteora DAMM v1</td></tr>
+    <tr><td><strong>Advisors</strong></td><td>5%</td><td>50,000,000</td><td>2-year vest, 6-month cliff</td></tr>
+    <tr><td><strong>Airdrop</strong></td><td>5%</td><td>50,000,000</td><td>Early community members</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout info">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Locked Liquidity</div>
+  <div class="callout-body">LP tokens are permanently locked on Meteora. The team earns trading fees on locked liquidity forever — this aligns long-term incentives.</div>
+</div>
+
+<h2 id="vesting">Vesting Schedule</h2>
+<h3 id="team-vesting">Team Tokens</h3>
+<p>Team allocation follows a <strong>4-year linear vest</strong> with a <strong>1-year cliff</strong>. This means:</p>
+<ul>
+  <li>No team tokens are accessible until <strong>March 2027</strong> (1-year cliff)</li>
+  <li>After the cliff, tokens unlock linearly over the remaining 3 years</li>
+  <li>Full vesting completes in March 2030</li>
+</ul>
+
+<h3 id="advisor-vesting">Advisor Tokens</h3>
+<p>Advisor allocation follows a <strong>2-year linear vest</strong> with a <strong>6-month cliff</strong>:</p>
+<ul>
+  <li>No advisor tokens accessible until September 2026</li>
+  <li>Linear unlock over 18 months after cliff</li>
+  <li>Full vesting completes in March 2028</li>
+</ul>
+
+<p>All vesting is enforced on-chain via the AXIOM vesting smart contract. See <a href="#/smart-contracts">Smart Contracts</a> for technical details.</p>
+`,
+
+// ===== ROADMAP =====
+'roadmap': `
+<p class="lead">AXIOM's development roadmap spans from token launch through full autonomous RWA management. Each milestone builds toward a self-sustaining, AI-powered asset management ecosystem.</p>
+
+<h2 id="timeline">Development Timeline</h2>
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-label">Q1 2026</div>
+    <div class="timeline-content">
+      <h4>Launch Phase</h4>
+      <p>Token launch, community presale, Meteora DAMM v1 pool creation, staking vault deployment, and initial governance framework.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">Q2 2026</div>
+    <div class="timeline-content">
+      <h4>AI Agent SDK</h4>
+      <p>Release of the AI Agent SDK for developers, first RWA tokenization pilot with a real estate asset, and initial agent marketplace infrastructure.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">Q3 2026</div>
+    <div class="timeline-content">
+      <h4>Agent Marketplace v1</h4>
+      <p>Launch of the Agent Marketplace v1 with curated AI agents, cross-chain bridge via Wormhole, and expanded RWA asset categories.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">Q4 2026</div>
+    <div class="timeline-content">
+      <h4>Governance v2 &amp; Institutions</h4>
+      <p>Advanced governance module (on-chain voting, delegation), institutional RWA partnerships, and enhanced analytics dashboard.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">2027</div>
+    <div class="timeline-content">
+      <h4>Full Autonomy &amp; Expansion</h4>
+      <p>Full autonomous RWA management capabilities, multi-chain expansion (Ethereum, Arbitrum), and AI agent performance marketplace with reputation system.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="beyond">Looking Beyond</h2>
+<p>AXIOM's long-term vision is to become the infrastructure layer for AI-managed real-world assets across all major blockchains. As the AI agent ecosystem matures, the protocol will evolve from managed to fully autonomous operations.</p>
+`,
+
+// ===== PRESALE =====
+'presale': `
+<p class="lead">The AXIOM presale offers early access to $AXM tokens at launch price. Participate with SOL on the AXIOM Launchpad.</p>
+
+<h2 id="presale-details">Presale Parameters</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Allocation</strong></td><td>50,000,000 AXM (5% of total supply)</td></tr>
+    <tr><td><strong>Hard Cap</strong></td><td>1,000 SOL</td></tr>
+    <tr><td><strong>Soft Cap</strong></td><td>200 SOL</td></tr>
+    <tr><td><strong>Contribution Range</strong></td><td>0.1 – 10 SOL per wallet</td></tr>
+    <tr><td><strong>Start Date</strong></td><td>March 25, 2026 00:00 UTC</td></tr>
+    <tr><td><strong>End Date</strong></td><td>March 28, 2026 00:00 UTC</td></tr>
+    <tr><td><strong>Dev Allocation</strong></td><td>20% of presale tokens (10M AXM)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="how-it-works">How It Works</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Connect Your Wallet</h4>
+    <p>Connect your Solana wallet (Phantom or Solflare) to the AXIOM launchpad at <a href="https://axiomprotocol.io/launch">axiomprotocol.io/launch</a>.</p>
+  </div>
+  <div class="step">
+    <h4>Enter Contribution</h4>
+    <p>Enter your SOL contribution amount (minimum 0.1 SOL, maximum 10 SOL per wallet).</p>
+  </div>
+  <div class="step">
+    <h4>Confirm Transaction</h4>
+    <p>Confirm the transaction in your wallet. Your SOL will be held in the presale smart contract.</p>
+  </div>
+  <div class="step">
+    <h4>Wait for Presale End</h4>
+    <p>The presale runs for 72 hours. Sit back and wait for the window to close.</p>
+  </div>
+  <div class="step">
+    <h4>Soft Cap Met → Claim AXM</h4>
+    <p>If the soft cap (200 SOL) is reached, the Meteora pool is created. Return to the launchpad and claim your AXM tokens.</p>
+  </div>
+  <div class="step">
+    <h4>Soft Cap NOT Met → Full Refund</h4>
+    <p>If the soft cap is not reached, claim a full SOL refund via the launchpad. No funds are lost.</p>
+  </div>
+</div>
+
+<div class="callout warning">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Refund Policy</div>
+  <div class="callout-body">If the presale does not reach the 200 SOL soft cap, all contributions are fully refundable. Use the "Claim Refund" function on the launchpad.</div>
+</div>
+`,
+
+// ===== TRADING =====
+'trading': `
+<p class="lead">After the presale, $AXM trades on Meteora — Solana's leading dynamic liquidity protocol. Here's how to buy, sell, and track AXM.</p>
+
+<h2 id="where-to-trade">Where to Trade</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Platform</th><th>Pair</th><th>Type</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Meteora</strong></td><td>AXM/SOL</td><td>DAMM v1 Pool</td><td style="color:var(--green)">Primary — locked LP</td></tr>
+    <tr><td><strong>Jupiter</strong></td><td>AXM/SOL, AXM/USDC</td><td>Aggregator</td><td style="color:var(--green)">Best prices — auto-routed</td></tr>
+    <tr><td><strong>Birdeye</strong></td><td>AXM/SOL</td><td>Analytics</td><td>Charts &amp; tracking</td></tr>
+    <tr><td><strong>DexScreener</strong></td><td>AXM/SOL</td><td>Charts</td><td>Real-time data</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="how-to-buy">How to Buy AXM</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Go to Jupiter</h4>
+    <p>Visit <a href="https://jup.ag" target="_blank">jup.ag</a> for the best swap rates across all Solana DEXs.</p>
+  </div>
+  <div class="step">
+    <h4>Connect Your Wallet</h4>
+    <p>Click "Connect Wallet" and select Phantom or Solflare.</p>
+  </div>
+  <div class="step">
+    <h4>Swap SOL → AXM</h4>
+    <p>Select SOL as input, AXM as output. Enter amount, review quote, and confirm. Jupiter finds the best route automatically.</p>
+  </div>
+</div>
+
+<h2 id="why-meteora">Why Meteora DAMM v1?</h2>
+<ul>
+  <li><strong>Locked LP earns fees forever</strong> — unlike Raydium where burning LP loses all fees</li>
+  <li><strong>Dynamic fees</strong> — adjusts to volatility, protecting against manipulation</li>
+  <li><strong>5% protocol fee</strong> — only 5% goes to Meteora, 95% to the AXIOM LP position</li>
+  <li><strong>Jupiter integration</strong> — all Jupiter swaps auto-route through the AXM/SOL pool</li>
+</ul>
+
+<div class="callout tip">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Best Price</div>
+  <div class="callout-body">Use <strong>Jupiter</strong> (<a href="https://jup.ag" target="_blank">jup.ag</a>) for the best swap rates. It aggregates all Solana DEXs automatically.</div>
+</div>
+`,
+
+// ===== STAKING =====
+'staking': `
+<p class="lead">Stake your AXM tokens to earn a share of the 200,000,000 AXM staking reward pool and participate in protocol governance.</p>
+
+<h2 id="overview">Overview</h2>
+<ul>
+  <li>Stake AXM to earn a share of the <strong>200M staking reward pool</strong></li>
+  <li>Staking locks your tokens in the on-chain staking vault</li>
+  <li>Rewards are distributed proportionally based on your share of total staked</li>
+  <li>Unstaking has a <strong>7-day cooldown period</strong></li>
+</ul>
+
+<h2 id="how-to-stake">How to Stake</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Visit Staking Dashboard</h4>
+    <p>Go to the AXIOM staking dashboard at <a href="https://axiomprotocol.io/stake">axiomprotocol.io/stake</a>.</p>
+  </div>
+  <div class="step">
+    <h4>Connect Your Wallet</h4>
+    <p>Connect your Solana wallet that holds AXM tokens.</p>
+  </div>
+  <div class="step">
+    <h4>Enter Amount</h4>
+    <p>Enter the amount of AXM you want to stake. You can stake any amount — there's no minimum.</p>
+  </div>
+  <div class="step">
+    <h4>Approve Transaction</h4>
+    <p>Confirm the staking transaction in your wallet. Your AXM will be transferred to the staking vault.</p>
+  </div>
+  <div class="step">
+    <h4>Earn Rewards</h4>
+    <p>Rewards accrue in real-time based on your proportion of the total staked AXM. Claim anytime via the dashboard.</p>
+  </div>
+</div>
+
+<h2 id="unstaking">Unstaking</h2>
+<p>To unstake your AXM, initiate an unstake request on the dashboard. Your tokens will enter a <strong>7-day cooldown period</strong>. After the cooldown, you can withdraw your tokens.</p>
+
+<div class="callout info">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Governance Power</div>
+  <div class="callout-body">Staked AXM gives you voting power in the AXIOM governance system. The more you stake, the more influence you have on protocol decisions.</div>
+</div>
+`,
+
+// ===== GOVERNANCE =====
+'governance': `
+<p class="lead">AXIOM is governed by its token holders. AXM stakers can propose and vote on protocol changes, treasury spending, and marketplace rules.</p>
+
+<h2 id="voting-power">Voting Power</h2>
+<ul>
+  <li>Voting power is proportional to <strong>staked AXM</strong></li>
+  <li>Only staked tokens count — unstaked AXM has no voting power</li>
+  <li>Proposals require a minimum quorum of <strong>5% of circulating supply</strong></li>
+</ul>
+
+<h2 id="proposal-types">Proposal Types</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Type</th><th>Description</th><th>Quorum</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Protocol Upgrades</strong></td><td>Smart contract updates, new features</td><td>5%</td></tr>
+    <tr><td><strong>Treasury Spending</strong></td><td>Allocate funds from protocol treasury</td><td>5%</td></tr>
+    <tr><td><strong>Fee Adjustments</strong></td><td>Change protocol fee parameters</td><td>5%</td></tr>
+    <tr><td><strong>Marketplace Rules</strong></td><td>Agent listing criteria, quality standards</td><td>5%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="proposal-lifecycle">Proposal Lifecycle</h2>
+<div class="steps">
+  <div class="step">
+    <h4>Draft</h4>
+    <p>Any AXM staker can submit a proposal draft. Include a title, description, and specific on-chain actions to execute.</p>
+  </div>
+  <div class="step">
+    <h4>Discussion (7 days)</h4>
+    <p>Community reviews and discusses the proposal. Authors can make amendments based on feedback.</p>
+  </div>
+  <div class="step">
+    <h4>Voting (5 days)</h4>
+    <p>Stakers vote for or against the proposal. Each staked AXM equals one vote. A simple majority wins if quorum is met.</p>
+  </div>
+  <div class="step">
+    <h4>Execution</h4>
+    <p>If the proposal passes, the on-chain actions are executed automatically via the governance contract.</p>
+  </div>
+</div>
+`,
+
+// ===== AI AGENTS =====
+'ai-agents': `
+<p class="lead">The AXIOM Agent Marketplace lets you deploy, discover, and monetise autonomous AI agents that manage real-world assets on Solana.</p>
+
+<h2 id="what-are-agents">What Are AXIOM Agents?</h2>
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(0,229,255,0.1)">🏠</div>
+    <h4>Real Estate Agents</h4>
+    <p>Analyse property markets, evaluate tokenized real estate, manage REIT-like portfolios.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(255,215,64,0.1)">⛏️</div>
+    <h4>Commodity Agents</h4>
+    <p>Track and trade tokenized commodities (gold, silver, oil) based on market signals.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(153,69,255,0.1)">🏗️</div>
+    <h4>Infrastructure Agents</h4>
+    <p>Evaluate and manage tokenized infrastructure — energy, transport, telecoms.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(105,240,174,0.1)">📊</div>
+    <h4>Portfolio Agents</h4>
+    <p>Multi-asset agents that rebalance across RWA categories based on risk profiles.</p>
+  </div>
+</div>
+
+<h2 id="using-agents">How to Use an Agent</h2>
+<div class="steps">
+  <div class="step"><h4>Browse the Marketplace</h4><p>Explore agents by category, performance, risk level, and fees.</p></div>
+  <div class="step"><h4>Subscribe</h4><p>Pay the subscription fee in AXM. Some charge flat fees, others take a % of returns.</p></div>
+  <div class="step"><h4>Deposit Assets</h4><p>Deposit SOL or AXM into the agent's managed vault.</p></div>
+  <div class="step"><h4>Monitor & Withdraw</h4><p>Track performance in real-time. Withdraw anytime — no lock-up.</p></div>
+</div>
+
+<div class="callout info">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Coming Q2 2026</div>
+  <div class="callout-body">Agent Marketplace launches Q2 2026. Developers can start building now with the <a href="#/building-agents">Agent SDK</a>.</div>
+</div>
+`,
+
+// ===== RWA ASSETS =====
+'rwa-assets': `
+<p class="lead">AXIOM brings real-world assets on-chain. Tokenized real estate, commodities, and infrastructure — managed by AI agents, verifiable on Solana.</p>
+
+<h2 id="supported-assets">Supported Asset Classes</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Asset Class</th><th>Examples</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Real Estate</strong></td><td>Commercial property, residential REITs, land tokens</td><td>Q2 2026</td></tr>
+    <tr><td><strong>Commodities</strong></td><td>Gold (PAXG), Silver, Oil futures</td><td>Q2 2026</td></tr>
+    <tr><td><strong>Infrastructure</strong></td><td>Energy projects, transport bonds, telecoms</td><td>Q3 2026</td></tr>
+    <tr><td><strong>Private Credit</strong></td><td>Corporate debt, invoice financing</td><td>Q4 2026</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="how-it-works">How RWA Works on AXIOM</h2>
+<p>AXIOM connects to existing RWA token issuers and provides an AI management layer:</p>
+<ol>
+  <li><strong>Discovery:</strong> AI agents scan eligible tokenized RWAs across Solana</li>
+  <li><strong>Due Diligence:</strong> Agents evaluate assets using financial models and oracle feeds</li>
+  <li><strong>Portfolio Construction:</strong> Agents build diversified portfolios matching user risk profiles</li>
+  <li><strong>Active Management:</strong> Continuous rebalancing based on market conditions</li>
+  <li><strong>Reporting:</strong> All actions recorded on-chain — fully transparent</li>
+</ol>
+`,
+
+// ===== DEV OVERVIEW =====
+'dev-overview': `
+<p class="lead">Build on AXIOM — deploy AI agents, integrate with the protocol, and access real-world assets programmatically.</p>
+
+<h2 id="what-you-can-build">What You Can Build</h2>
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(0,229,255,0.1)">🤖</div>
+    <h4>AI Agents</h4>
+    <p>Create autonomous agents that manage RWA portfolios. List on the marketplace and earn AXM.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(153,69,255,0.1)">🔌</div>
+    <h4>Protocol Integrations</h4>
+    <p>Integrate AXIOM staking, governance, or RWA data into your dApp via the TypeScript SDK.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(255,215,64,0.1)">📊</div>
+    <h4>Analytics Tools</h4>
+    <p>Build dashboards tracking agent performance, token metrics, and portfolio analytics.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon" style="background:rgba(105,240,174,0.1)">🔗</div>
+    <h4>Oracle Bridges</h4>
+    <p>Connect real-world data feeds to AXIOM agents — property prices, commodity rates, credit scores.</p>
+  </div>
+</div>
+
+<h2 id="tech-stack">Technology Stack</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Blockchain</strong></td><td>Solana</td><td>Settlement, token ops, program execution</td></tr>
+    <tr><td><strong>Contracts</strong></td><td>Anchor (Rust)</td><td>Presale, vesting, staking, agent registry</td></tr>
+    <tr><td><strong>Token</strong></td><td>Token-2022</td><td>AXM with advanced features</td></tr>
+    <tr><td><strong>Liquidity</strong></td><td>Meteora DAMM v1</td><td>Permanent LP with fee claims</td></tr>
+    <tr><td><strong>SDK</strong></td><td>TypeScript / Python</td><td>Client libraries for AXIOM programs</td></tr>
+    <tr><td><strong>Oracles</strong></td><td>Pyth / Chainlink</td><td>RWA price feeds</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="get-started-dev">Get Started</h2>
+<ul>
+  <li><a href="#/sdk-guide"><strong>SDK & Quick Start</strong></a> — Install and make your first call</li>
+  <li><a href="#/building-agents"><strong>Building AI Agents</strong></a> — Create and deploy agents</li>
+  <li><a href="#/smart-contracts"><strong>Smart Contracts</strong></a> — Full function reference</li>
+  <li><a href="#/api-reference"><strong>API Reference</strong></a> — Account types and RPC queries</li>
+</ul>
+`,
+
+// ===== SMART CONTRACTS =====
+'smart-contracts': `
+<p class="lead">Detailed reference for all AXIOM smart contract functions. Each contract exposes a set of instructions that can be called by users or admins.</p>
+
+<h2 id="presale-contract">Presale Contract</h2>
+<div class="func-item">
+  <div class="func-sig">contribute(amount: u64)</div>
+  <div class="func-desc">Contribute SOL to the presale. Amount must be between 0.1 and 10 SOL. Wallet must not exceed the per-wallet contribution limit.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">claim_tokens()</div>
+  <div class="func-desc">Claim your AXM tokens after a successful presale (soft cap reached and Meteora pool created). Tokens are sent directly to your wallet.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">claim_refund()</div>
+  <div class="func-desc">Claim a full SOL refund if the presale fails to reach the soft cap. Available only when presale status is "Failed".</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">finalize_presale() <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Finalize the presale and trigger migration to Meteora DAMM v1 pool. Creates the liquidity pool and locks LP tokens.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">manual_add_liquidity(sol: u64, tokens: u64) <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Emergency liquidity override. Manually add SOL and AXM to the Meteora pool in case of migration issues.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">lock_lp_tokens(duration: i64) <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Lock LP tokens for a specified duration. Used to permanently lock liquidity on Meteora.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">burn_lp_tokens() <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Burn LP tokens permanently. Use with caution — this forfeits the right to claim trading fees.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">enable_emergency_refund() <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Enable emergency refund mode. All contributors can claim full SOL refunds regardless of presale status.</div>
+</div>
+
+<h2 id="vesting-contract">Vesting Contract</h2>
+<div class="func-item">
+  <div class="func-sig">create_vesting_schedule(beneficiary: Pubkey, amount: u64, start: i64, cliff: i64, duration: i64) <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Create a new vesting schedule for a beneficiary. Tokens unlock linearly after the cliff period.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">claim_vested()</div>
+  <div class="func-desc">Claim all unlocked (vested) tokens. Beneficiary receives tokens that have passed the vesting schedule.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">revoke_vesting() <span class="func-badge admin">Admin</span></div>
+  <div class="func-desc">Revoke a vesting schedule. Already-vested tokens remain with the beneficiary; unvested tokens return to the treasury.</div>
+</div>
+
+<h2 id="staking-vault">Staking Vault</h2>
+<div class="func-item">
+  <div class="func-sig">stake(amount: u64)</div>
+  <div class="func-desc">Stake AXM tokens in the staking vault. Tokens are transferred from your wallet to the vault. Rewards begin accruing immediately.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">unstake(amount: u64)</div>
+  <div class="func-desc">Begin unstaking AXM tokens. Initiates a 7-day cooldown period. Tokens remain in the vault during cooldown.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">withdraw()</div>
+  <div class="func-desc">Withdraw unstaked tokens after the 7-day cooldown period has elapsed. Tokens are returned to your wallet.</div>
+</div>
+<div class="func-item">
+  <div class="func-sig">claim_rewards()</div>
+  <div class="func-desc">Claim accumulated staking rewards. Rewards are calculated proportionally based on your share of total staked AXM.</div>
+</div>
+`,
+
+// ===== METEORA INTEGRATION =====
+'meteora-integration': `
+<p class="lead">AXIOM uses Meteora Dynamic AMM (DAMM v1) for its liquidity pool — a strategic choice that enables permanent liquidity locking while retaining trading fee revenue.</p>
+
+<h2 id="why-meteora">Why Meteora over Raydium?</h2>
+<p>Unlike traditional DEXs, Meteora allows creators to <strong>permanently lock liquidity</strong> while retaining the right to claim trading fees forever. This is a game-changer for token projects.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Feature</th><th>Meteora DAMM v1</th><th>Raydium</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Fee on locked LP</strong></td><td style="color:var(--green)">Yes — claim forever</td><td style="color:var(--red)">No — lost on burn</td></tr>
+    <tr><td><strong>Dynamic fees</strong></td><td style="color:var(--green)">Yes — adjusts to volatility</td><td>Fixed</td></tr>
+    <tr><td><strong>Jupiter integration</strong></td><td>Yes — auto-routed</td><td>Yes</td></tr>
+    <tr><td><strong>TVL</strong></td><td>$1B+</td><td>$500M+</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="protocol-fee">Protocol Fee Structure</h2>
+<ul>
+  <li><strong>5%</strong> of the dynamic fee goes to Meteora protocol</li>
+  <li>The remaining <strong>95%</strong> goes to the LP position holder (AXIOM)</li>
+  <li>Fees are claimable at any time, even with locked LP tokens</li>
+</ul>
+<p>SDK: <code>@mercurial-finance/dynamic-amm-sdk</code></p>
+
+<h2 id="code-example">Code Example</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>javascript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-kw">import</span> AmmImpl <span class="tok-kw">from</span> <span class="tok-str">"@mercurial-finance/dynamic-amm-sdk"</span>;
+
+<span class="tok-cm">// Create pool</span>
+<span class="tok-kw">const</span> txHash = <span class="tok-kw">await</span> AmmImpl.<span class="tok-fn">createPermissionlessPool</span>(
+  connection,
+  wallet.publicKey,
+  tokenAMint,
+  tokenBMint,
+  tokenAAmount,
+  tokenBAmount,
+  <span class="tok-const">false</span> <span class="tok-cm">// not stable pool</span>
+);
+
+<span class="tok-cm">// Lock LP permanently (preserves fee claims)</span>
+<span class="tok-kw">const</span> pool = <span class="tok-kw">await</span> AmmImpl.<span class="tok-fn">create</span>(connection, poolAddress);
+<span class="tok-kw">await</span> pool.<span class="tok-fn">lockLiquidity</span>(wallet.publicKey, lpAmount);
+
+<span class="tok-cm">// Claim fees anytime</span>
+<span class="tok-kw">await</span> pool.<span class="tok-fn">claimLockFee</span>(wallet.publicKey, poolAddress);</pre>
+</div>
+
+<h2 id="integration-details">Integration Details</h2>
+<p>The AXIOM presale contract automatically migrates raised SOL and allocated AXM tokens to a Meteora DAMM v1 pool upon successful presale finalization. LP tokens are then permanently locked via the <code>lockLiquidity</code> method.</p>
+<p>The protocol retains the right to claim accumulated trading fees at any time via <code>claimLockFee</code>, creating a sustainable revenue stream that aligns team incentives with long-term token health.</p>
+`,
+
+// ===== SDK GUIDE =====
+'sdk-guide': `
+<p class="lead">Get started with the AXIOM TypeScript SDK. Connect to the protocol, read state, and interact with all programs in minutes.</p>
+
+<h2 id="installation">Installation</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-cm"># Install the AXIOM SDK</span>
+<span class="tok-fn">npm install</span> @axiom-protocol/sdk @coral-xyz/anchor @solana/web3.js</pre>
+</div>
+
+<h2 id="quick-start-sdk">Quick Start</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>typescript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-kw">import</span> { AxiomSDK } <span class="tok-kw">from</span> <span class="tok-str">"@axiom-protocol/sdk"</span>;
+<span class="tok-kw">import</span> { Connection, PublicKey } <span class="tok-kw">from</span> <span class="tok-str">"@solana/web3.js"</span>;
+
+<span class="tok-cm">// 1. Initialize</span>
+<span class="tok-kw">const</span> connection = <span class="tok-kw">new</span> <span class="tok-type">Connection</span>(<span class="tok-str">"https://api.mainnet-beta.solana.com"</span>);
+<span class="tok-kw">const</span> axiom = <span class="tok-kw">new</span> <span class="tok-type">AxiomSDK</span>(connection);
+
+<span class="tok-cm">// 2. Read presale state</span>
+<span class="tok-kw">const</span> presale = <span class="tok-kw">await</span> axiom.presale.<span class="tok-fn">getState</span>();
+console.<span class="tok-fn">log</span>(<span class="tok-str">"SOL Raised:"</span>, presale.totalSolCollected);
+
+<span class="tok-cm">// 3. Check staking</span>
+<span class="tok-kw">const</span> wallet = <span class="tok-kw">new</span> <span class="tok-type">PublicKey</span>(<span class="tok-str">"YOUR_WALLET"</span>);
+<span class="tok-kw">const</span> stake = <span class="tok-kw">await</span> axiom.staking.<span class="tok-fn">getStakeAccount</span>(wallet);
+console.<span class="tok-fn">log</span>(<span class="tok-str">"Staked:"</span>, stake.amount);</pre>
+</div>
+
+<h2 id="staking-sdk">Staking with the SDK</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>typescript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-kw">const</span> axiom = <span class="tok-kw">new</span> <span class="tok-type">AxiomSDK</span>(connection, wallet);
+
+<span class="tok-cm">// Stake 1000 AXM</span>
+<span class="tok-kw">await</span> axiom.staking.<span class="tok-fn">stake</span>({ amount: <span class="tok-num">1000</span> * <span class="tok-num">1e9</span> });
+
+<span class="tok-cm">// Claim rewards</span>
+<span class="tok-kw">await</span> axiom.staking.<span class="tok-fn">claimRewards</span>();
+
+<span class="tok-cm">// Unstake (7-day cooldown)</span>
+<span class="tok-kw">await</span> axiom.staking.<span class="tok-fn">unstake</span>({ amount: <span class="tok-num">500</span> * <span class="tok-num">1e9</span> });
+
+<span class="tok-cm">// Withdraw after cooldown</span>
+<span class="tok-kw">await</span> axiom.staking.<span class="tok-fn">withdraw</span>();</pre>
+</div>
+
+<h2 id="dev-setup">Development Setup</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-fn">git clone</span> https://github.com/AliceTechX/axiom-launch.git
+<span class="tok-fn">cd</span> axiom-launch
+<span class="tok-fn">chmod</span> +x setup.sh && ./setup.sh</pre>
+</div>
+
+<div class="callout warning">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Devnet First</div>
+  <div class="callout-body">Always test on devnet before mainnet. Get free SOL: <code>solana airdrop 2</code></div>
+</div>
+`,
+
+// ===== BUILDING AGENTS =====
+'building-agents': `
+<p class="lead">Create autonomous AI agents that manage real-world assets on the AXIOM marketplace. Earn AXM fees when users subscribe.</p>
+
+<h2 id="agent-structure">Agent Structure</h2>
+<p>Every AXIOM agent:</p>
+<ol>
+  <li>Reads real-world data from oracle feeds (Pyth, Chainlink, Switchboard)</li>
+  <li>Processes data through AI/ML strategy logic</li>
+  <li>Executes on-chain transactions via the AXIOM SDK</li>
+  <li>Reports performance to the Agent Registry</li>
+</ol>
+
+<h2 id="create-agent">Creating Your First Agent</h2>
+<div class="code-block">
+  <div class="code-block-header"><span>typescript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-kw">import</span> { AxiomAgent, AgentConfig } <span class="tok-kw">from</span> <span class="tok-str">"@axiom-protocol/agent-sdk"</span>;
+
+<span class="tok-cm">// 1. Configure your agent</span>
+<span class="tok-kw">const</span> config: <span class="tok-type">AgentConfig</span> = {
+  name: <span class="tok-str">"Gold-Rebalancer"</span>,
+  description: <span class="tok-str">"Rebalances between SOL and tokenized gold"</span>,
+  category: <span class="tok-str">"commodities"</span>,
+  riskLevel: <span class="tok-str">"medium"</span>,
+  feeStructure: {
+    subscriptionFee: <span class="tok-num">100</span> * <span class="tok-num">1e9</span>,  <span class="tok-cm">// 100 AXM/month</span>
+    performanceFee: <span class="tok-num">0.05</span>,        <span class="tok-cm">// 5% of profits</span>
+  },
+};
+
+<span class="tok-cm">// 2. Create and define strategy</span>
+<span class="tok-kw">const</span> agent = <span class="tok-kw">new</span> <span class="tok-type">AxiomAgent</span>(config);
+
+agent.<span class="tok-fn">onTick</span>(<span class="tok-kw">async</span> (ctx) => {
+  <span class="tok-kw">const</span> gold = <span class="tok-kw">await</span> ctx.oracle.<span class="tok-fn">getPrice</span>(<span class="tok-str">"XAU/USD"</span>);
+  <span class="tok-kw">const</span> sol  = <span class="tok-kw">await</span> ctx.oracle.<span class="tok-fn">getPrice</span>(<span class="tok-str">"SOL/USD"</span>);
+
+  <span class="tok-kw">const</span> signal = <span class="tok-kw">await</span> <span class="tok-fn">evaluateMarket</span>(gold, sol);
+
+  <span class="tok-kw">if</span> (signal === <span class="tok-str">"buy_gold"</span>)
+    <span class="tok-kw">await</span> ctx.<span class="tok-fn">swap</span>({ from: <span class="tok-str">"SOL"</span>, to: <span class="tok-str">"PAXG"</span>, amount: signal.size });
+
+  <span class="tok-kw">await</span> ctx.<span class="tok-fn">reportMetrics</span>({ portfolioValue: <span class="tok-kw">await</span> ctx.<span class="tok-fn">getPortfolioValue</span>() });
+});
+
+<span class="tok-cm">// 3. Register & start</span>
+<span class="tok-kw">await</span> agent.<span class="tok-fn">register</span>();
+agent.<span class="tok-fn">start</span>();</pre>
+</div>
+
+<h2 id="agent-lifecycle">Agent Lifecycle</h2>
+<div class="steps">
+  <div class="step"><h4>Develop</h4><p>Build locally, test with mock data and devnet.</p></div>
+  <div class="step"><h4>Register</h4><p>Register on-chain via Agent Registry with your strategy, fees, and risk level.</p></div>
+  <div class="step"><h4>Deploy</h4><p>Deploy to AXIOM's execution environment. Runs 24/7 with oracle access.</p></div>
+  <div class="step"><h4>Earn</h4><p>Users subscribe and pay AXM fees. Top agents earn more subscribers.</p></div>
+</div>
+
+<h2 id="requirements">Requirements</h2>
+<ul>
+  <li><strong>Stake:</strong> 10,000+ AXM for 30+ days (Builder tier)</li>
+  <li><strong>Testing:</strong> 30-day track record on devnet before mainnet</li>
+  <li><strong>Reporting:</strong> Must report performance metrics every tick</li>
+</ul>
+
+<div class="callout tip">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Agent SDK</div>
+  <div class="callout-body">Full Agent SDK docs and starter templates: <code>@axiom-protocol/agent-sdk</code>. Join <a href="https://discord.gg/axiomprotocol" target="_blank">Discord</a> for dev support.</div>
+</div>
+`,
+
+// ===== API REFERENCE =====
+'api-reference': `
+<p class="lead">The AXIOM protocol exposes its on-chain state via standard Solana RPC. Use Anchor's IDL for type-safe interaction with all program accounts.</p>
+
+<h2 id="reading-state">Reading Presale State</h2>
+<p>Use the Anchor SDK to fetch and decode on-chain account data. The presale state account holds all information about the current presale status, contributions, and participants.</p>
+
+<div class="code-block">
+  <div class="code-block-header"><span>javascript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre><span class="tok-kw">import</span> { Program } <span class="tok-kw">from</span> <span class="tok-str">"@coral-xyz/anchor"</span>;
+<span class="tok-kw">import</span> { Presale } <span class="tok-kw">from</span> <span class="tok-str">"./types/presale"</span>;
+
+<span class="tok-kw">const</span> program = <span class="tok-kw">new</span> <span class="tok-type">Program</span>(idl, programId, provider);
+<span class="tok-kw">const</span> state = <span class="tok-kw">await</span> program.account.presaleState.<span class="tok-fn">fetch</span>(presalePDA);
+
+console.<span class="tok-fn">log</span>(<span class="tok-str">"Total SOL raised:"</span>, state.totalSolCollected.<span class="tok-fn">toNumber</span>());
+console.<span class="tok-fn">log</span>(<span class="tok-str">"Contributors:"</span>, state.contributorCount);
+console.<span class="tok-fn">log</span>(<span class="tok-str">"Status:"</span>, Object.<span class="tok-fn">keys</span>(state.status)[<span class="tok-num">0</span>]);</pre>
+</div>
+
+<h2 id="account-types">Key Account Types</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Account</th><th>Program</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>PresaleState</code></td><td>Presale</td><td>Global presale config, status, caps, totals</td></tr>
+    <tr><td><code>ContributorRecord</code></td><td>Presale</td><td>Per-wallet contribution amount and claim status</td></tr>
+    <tr><td><code>VestingSchedule</code></td><td>Vesting</td><td>Beneficiary vesting parameters and claimed amount</td></tr>
+    <tr><td><code>StakeAccount</code></td><td>Staking</td><td>Per-user staked amount, rewards, cooldown state</td></tr>
+    <tr><td><code>AgentRecord</code></td><td>Agent Registry</td><td>AI agent metadata, performance, and revenue</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="rpc-endpoints">RPC Endpoints</h2>
+<p>AXIOM recommends using dedicated RPC providers for production applications:</p>
+<ul>
+  <li><strong>Helius</strong> — <code>https://mainnet.helius-rpc.com</code></li>
+  <li><strong>QuickNode</strong> — Custom Solana endpoint</li>
+  <li><strong>Triton</strong> — <code>https://axiom-mainnet.triton.one</code></li>
+</ul>
+
+<div class="callout tip">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Tip</div>
+  <div class="callout-body">Use <code>getProgramAccounts</code> with filters to efficiently query all contributor records or stake accounts. Always include a <code>dataSize</code> filter to limit results.</div>
+</div>
+`,
+
+// ===== FAQ =====
+'faq': `
+<p class="lead">Answers to the most commonly asked questions about AXIOM, the $AXM token, and the protocol.</p>
+
+<h2 id="general">General Questions</h2>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">What chain is AXIOM on? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">Solana. We chose Solana for its sub-second finality and near-zero transaction costs (&lt;$0.01 per transaction). This makes real-time RWA management practical and cost-effective.</div></div>
+</div>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">When is the presale? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">March 25–28, 2026. Hard cap 1,000 SOL, soft cap 200 SOL. Contribution range: 0.1–10 SOL per wallet. Visit the <a href="#/presale">Presale Details</a> page for more info.</div></div>
+</div>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">What happens if the soft cap isn't met? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">All contributions are fully refundable. Use the "Claim Refund" function on the launchpad. No funds are ever at risk if the soft cap isn't reached.</div></div>
+</div>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">How are team tokens vested? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">4-year linear vesting with a 1-year cliff. No team tokens are accessible until March 2027. After the cliff, tokens unlock linearly over 3 years. This is enforced on-chain.</div></div>
+</div>
+
+<h2 id="technical">Technical Questions</h2>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">What is Meteora and why not Raydium? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">Meteora DAMM v1 lets us permanently lock liquidity while earning trading fees forever. With Raydium, burning LP tokens means losing all fee revenue. See <a href="#/meteora-integration">Meteora Integration</a> for the full comparison.</div></div>
+</div>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">Is the code open source? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">The whitepaper and token metadata are public. Smart contracts and launch infrastructure are private to protect the launch. Post-launch, we plan to open-source the Agent SDK and marketplace contracts.</div></div>
+</div>
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <button class="accordion-trigger">How do I stake AXM? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+  <div class="accordion-body"><div class="accordion-body-inner">Connect your wallet to the staking dashboard, enter the amount of AXM to stake, and confirm the transaction. Rewards accrue in real-time. Unstaking has a 7-day cooldown. See the <a href="#/staking">Staking</a> page for details.</div></div>
+</div>
+`,
+
+// ===== SECURITY =====
+'security': `
+<p class="lead">Security is foundational to AXIOM. Every smart contract is built with multiple layers of protection, and critical operations are guarded by on-chain enforcement.</p>
+
+<h2 id="core-security">Core Security Measures</h2>
+<ul>
+  <li>All smart contracts built with <strong>Anchor framework</strong> safety checks</li>
+  <li><strong>Mint authority is revoked</strong> after launch — no new tokens can ever be minted</li>
+  <li>LP tokens are <strong>permanently locked</strong> on Meteora</li>
+  <li>Team tokens are <strong>vested with on-chain enforcement</strong> — no early access possible</li>
+  <li>Admin operations require <strong>multi-sig</strong> (planned for mainnet)</li>
+</ul>
+
+<h2 id="contract-security">Contract Security</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Protection</th><th>Implementation</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Reentrancy protection</strong></td><td>Anchor's access controls and account validation</td></tr>
+    <tr><td><strong>Overflow protection</strong></td><td>Rust's checked arithmetic (checked_add, checked_mul)</td></tr>
+    <tr><td><strong>Emergency refunds</strong></td><td>Presale contributors can always claim refunds in emergency mode</td></tr>
+    <tr><td><strong>Rate limiting</strong></td><td>Per-wallet contribution limits enforced on-chain</td></tr>
+    <tr><td><strong>Account validation</strong></td><td>All accounts verified via PDA derivation and owner checks</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="best-practices">User Security Best Practices</h2>
+<ul>
+  <li>Only interact with AXIOM through <strong>official links</strong> listed on the <a href="#/links">Links</a> page</li>
+  <li>Never share your <strong>seed phrase or private key</strong> with anyone</li>
+  <li>Verify all transaction details in your wallet before confirming</li>
+  <li>Use a hardware wallet for large holdings</li>
+  <li>Enable wallet transaction simulation to preview outcomes</li>
+</ul>
+
+<div class="callout tip">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Report Vulnerabilities</div>
+  <div class="callout-body">If you find a security vulnerability, please report it responsibly to <strong>security@axiomprotocol.io</strong>. We take all reports seriously and will respond within 24 hours.</div>
+</div>
+`,
+
+// ===== LINKS =====
+'links': `
+<p class="lead">Official AXIOM channels and resources. Always verify links before interacting — bookmark these to stay safe.</p>
+
+<h2 id="official-channels">Official Channels</h2>
+<div class="link-grid">
+  <a href="https://axiomprotocol.io" target="_blank" class="link-card">
+    <div class="link-card-icon">🌐</div>
+    <div>
+      <div class="link-card-text">Website</div>
+      <div class="link-card-url">axiomprotocol.io</div>
+    </div>
+  </a>
+  <a href="https://axiomprotocol.io/launch" target="_blank" class="link-card">
+    <div class="link-card-icon">🚀</div>
+    <div>
+      <div class="link-card-text">Launchpad</div>
+      <div class="link-card-url">axiomprotocol.io/launch</div>
+    </div>
+  </a>
+  <a href="https://x.com/axiom_protocol" target="_blank" class="link-card">
+    <div class="link-card-icon">𝕏</div>
+    <div>
+      <div class="link-card-text">X / Twitter</div>
+      <div class="link-card-url">x.com/axiom_protocol</div>
+    </div>
+  </a>
+  <a href="https://discord.gg/axiomprotocol" target="_blank" class="link-card">
+    <div class="link-card-icon">💬</div>
+    <div>
+      <div class="link-card-text">Discord</div>
+      <div class="link-card-url">discord.gg/axiomprotocol</div>
+    </div>
+  </a>
+  <a href="https://t.me/axiomprotocol" target="_blank" class="link-card">
+    <div class="link-card-icon">✈️</div>
+    <div>
+      <div class="link-card-text">Telegram</div>
+      <div class="link-card-url">t.me/axiomprotocol</div>
+    </div>
+  </a>
+  <a href="https://github.com/AliceTechX" target="_blank" class="link-card">
+    <div class="link-card-icon">🐙</div>
+    <div>
+      <div class="link-card-text">GitHub</div>
+      <div class="link-card-url">github.com/AliceTechX</div>
+    </div>
+  </a>
+  <a href="https://medium.com/@axiomprotocol" target="_blank" class="link-card">
+    <div class="link-card-icon">📝</div>
+    <div>
+      <div class="link-card-text">Medium</div>
+      <div class="link-card-url">medium.com/@axiomprotocol</div>
+    </div>
+  </a>
+  <a href="https://axiomprotocol.io/whitepaper.pdf" target="_blank" class="link-card">
+    <div class="link-card-icon">📄</div>
+    <div>
+      <div class="link-card-text">Whitepaper</div>
+      <div class="link-card-url">axiomprotocol.io/whitepaper.pdf</div>
+    </div>
+  </a>
+</div>
+
+<div class="callout danger">
+  <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Beware of Scams</div>
+  <div class="callout-body">AXIOM will <strong>NEVER</strong> DM you first or ask for your seed phrase. Always verify links against this page. Report impersonation accounts to our moderators on Discord.</div>
+</div>
+`
+  };
+  return pages[id] || '<p>Page not found.</p>';
+}
+
+// ===== SIDEBAR RENDERING =====
+function renderSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  nav.innerHTML = SECTIONS.map(section => `
+    <div class="sidebar-section" data-section="${section.title}">
+      <button class="sidebar-section-toggle" onclick="toggleSection(this.parentElement)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        ${section.title}
+      </button>
+      <div class="sidebar-section-items">
+        ${section.pages.map(p => `<a class="sidebar-link" data-page="${p.id}" onclick="navigateTo('${p.id}')">${p.title}</a>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleSection(el) {
+  el.classList.toggle('collapsed');
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('mobileOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+// ===== ROUTING =====
+function getPageId() {
+  const hash = window.location.hash.replace('#/', '').replace('#', '');
+  return hash || 'introduction';
+}
+
+function navigateTo(id) {
+  window.location.hash = '#/' + id;
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
+}
+
+function renderPage() {
+  const id = getPageId();
+  const page = allPages.find(p => p.id === id);
+  if (!page) { navigateTo('introduction'); return; }
+
+  const content = document.getElementById('content');
+  const html = getPageContent(id);
+
+  // Breadcrumb
+  const breadcrumb = `<div class="breadcrumb"><a onclick="navigateTo('introduction')">AXIOM</a><span class="sep">›</span><span>${page.section}</span><span class="sep">›</span><span>${page.title}</span></div>`;
+
+  // Title
+  const title = `<div class="article"><h1>${page.title}</h1>${html}</div>`;
+
+  // Prev/Next
+  const idx = allPages.findIndex(p => p.id === id);
+  const prev = idx > 0 ? allPages[idx - 1] : null;
+  const next = idx < allPages.length - 1 ? allPages[idx + 1] : null;
+
+  let pageNav = '<div class="page-nav">';
+  if (prev) {
+    pageNav += `<a class="page-nav-item" onclick="navigateTo('${prev.id}')"><span class="page-nav-label">← Previous</span><span class="page-nav-title">${prev.title}</span></a>`;
+  }
+  if (next) {
+    pageNav += `<a class="page-nav-item next" onclick="navigateTo('${next.id}')"><span class="page-nav-label">Next →</span><span class="page-nav-title">${next.title}</span></a>`;
+  }
+  pageNav += '</div>';
+
+  content.innerHTML = breadcrumb + title + pageNav;
+
+  // Add anchor links to headings
+  content.querySelectorAll('h2[id], h3[id]').forEach(h => {
+    const anchor = document.createElement('span');
+    anchor.className = 'heading-anchor';
+    anchor.textContent = '#';
+    anchor.onclick = (e) => {
+      e.preventDefault();
+      const url = window.location.origin + window.location.pathname + '#/' + id + '?' + h.id;
+      navigator.clipboard.writeText(url);
+      anchor.textContent = '✓';
+      setTimeout(() => anchor.textContent = '#', 1500);
+    };
+    h.appendChild(anchor);
+  });
+
+  // Active sidebar link
+  document.querySelectorAll('.sidebar-link').forEach(l => {
+    l.classList.toggle('active', l.dataset.page === id);
+  });
+
+  // Expand the correct section
+  SECTIONS.forEach(section => {
+    const el = document.querySelector(`.sidebar-section[data-section="${section.title}"]`);
+    if (section.pages.some(p => p.id === id)) {
+      el.classList.remove('collapsed');
+    }
+  });
+
+  // Render TOC
+  renderTOC();
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+
+  // Re-animate
+  content.style.animation = 'none';
+  content.offsetHeight; // trigger reflow
+  content.style.animation = '';
+}
+
+// ===== TOC =====
+function renderTOC() {
+  const toc = document.getElementById('toc');
+  const headings = document.querySelectorAll('.article h2[id], .article h3[id]');
+  if (headings.length === 0) { toc.innerHTML = ''; return; }
+
+  let html = '<div class="toc-title">On this page</div>';
+  headings.forEach(h => {
+    const indent = h.tagName === 'H3' ? ' style="padding-left:24px;font-size:12px"' : '';
+    html += `<a class="toc-link" href="javascript:void(0)" onclick="scrollToHeading('${h.id}')"${indent}>${h.textContent.replace('#', '').trim()}</a>`;
+  });
+  toc.innerHTML = html;
+
+  // Scroll spy
+  updateTocActive();
+}
+
+function scrollToHeading(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updateTocActive() {
+  const headings = document.querySelectorAll('.article h2[id], .article h3[id]');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  if (!headings.length) return;
+
+  let activeIdx = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top <= 80) activeIdx = i;
+  });
+
+  tocLinks.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+}
+
+window.addEventListener('scroll', updateTocActive, { passive: true });
+
+// ===== COPY CODE =====
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ===== ACCORDION =====
+function toggleAccordion(el) {
+  const wasOpen = el.classList.contains('open');
+  el.classList.toggle('open');
+  const body = el.querySelector('.accordion-body');
+  if (wasOpen) {
+    body.style.maxHeight = '0';
+  } else {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+// ===== SEARCH =====
+function openSearch() {
+  const overlay = document.getElementById('searchOverlay');
+  overlay.classList.add('open');
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  input.focus();
+  renderSearchResults('');
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('open');
+}
+
+document.getElementById('searchOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('searchOverlay')) closeSearch();
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  renderSearchResults(e.target.value);
+});
+
+let searchFocusIdx = -1;
+
+function renderSearchResults(query) {
+  const container = document.getElementById('searchResults');
+  searchFocusIdx = -1;
+
+  if (!query.trim()) {
+    container.innerHTML = '<div class="search-no-results">Type to search documentation…</div>';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const results = [];
+
+  allPages.forEach(page => {
+    const content = getPageContent(page.id);
+    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+    const titleMatch = page.title.toLowerCase().includes(q);
+    const contentMatch = plainText.toLowerCase().includes(q);
+
+    if (titleMatch || contentMatch) {
+      let snippet = '';
+      if (contentMatch) {
+        const idx = plainText.toLowerCase().indexOf(q);
+        const start = Math.max(0, idx - 40);
+        const end = Math.min(plainText.length, idx + q.length + 60);
+        snippet = (start > 0 ? '…' : '') + plainText.substring(start, end) + (end < plainText.length ? '…' : '');
+      }
+      results.push({ ...page, snippet, titleMatch });
+    }
+  });
+
+  // Sort: title matches first
+  results.sort((a, b) => (b.titleMatch ? 1 : 0) - (a.titleMatch ? 1 : 0));
+
+  if (results.length === 0) {
+    container.innerHTML = '<div class="search-no-results">No results found for "' + query + '"</div>';
+    return;
+  }
+
+  container.innerHTML = results.map((r, i) => `
+    <a class="search-result-item" data-idx="${i}" onclick="navigateTo('${r.id}');closeSearch()">
+      <div class="search-result-section">${r.section}</div>
+      <div class="search-result-title">${r.title}</div>
+      ${r.snippet ? `<div class="search-result-snippet">${r.snippet}</div>` : ''}
+    </a>
+  `).join('');
+}
+
+// Keyboard navigation for search
+document.getElementById('searchInput').addEventListener('keydown', (e) => {
+  const items = document.querySelectorAll('.search-result-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    searchFocusIdx = Math.min(searchFocusIdx + 1, items.length - 1);
+    items.forEach((el, i) => el.classList.toggle('focused', i === searchFocusIdx));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    searchFocusIdx = Math.max(searchFocusIdx - 1, 0);
+    items.forEach((el, i) => el.classList.toggle('focused', i === searchFocusIdx));
+  } else if (e.key === 'Enter' && searchFocusIdx >= 0) {
+    e.preventDefault();
+    items[searchFocusIdx]?.click();
+  } else if (e.key === 'Escape') {
+    closeSearch();
+  }
+});
+
+// Global keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Cmd/Ctrl + K for search
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    openSearch();
+  }
+  // Escape to close search
+  if (e.key === 'Escape') closeSearch();
+
+  // Arrow keys for prev/next (only when search is not open)
+  if (!document.getElementById('searchOverlay').classList.contains('open')) {
+    const id = getPageId();
+    const idx = allPages.findIndex(p => p.id === id);
+    if (e.key === 'ArrowLeft' && idx > 0) {
+      navigateTo(allPages[idx - 1].id);
+    } else if (e.key === 'ArrowRight' && idx < allPages.length - 1) {
+      navigateTo(allPages[idx + 1].id);
+    }
+  }
+});
+
+// ===== INIT =====
+window.addEventListener('hashchange', renderPage);
+renderSidebar();
+renderPage();
+</script>
+</body>
+</html>
