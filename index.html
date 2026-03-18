@@ -32,7 +32,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "AXIOM Protocol Documentation",
-  "url": "https://axiomprotocol.io",
+  "url": "https://axmprotocol.io",
   "creator": {
     "@type": "SoftwareApplication",
     "name": "Perplexity Computer",
@@ -1186,8 +1186,8 @@ const CONFIG = {
     rewardPool: 200_000_000,
   },
   links: {
-    github: 'https://github.com/axiom-protocol',
-    website: 'https://axiomprotocol.io',
+    github: 'https://github.com/axm-protocol',
+    website: 'https://axmprotocol.io',
   }
 };
 
@@ -1308,7 +1308,7 @@ function getPageContent(id) {
   </div>
   <div class="step">
     <h4>Connect to AXIOM</h4>
-    <p>Visit the <a href="https://axiomprotocol.io/launch">AXIOM Launchpad</a> and connect your Solana wallet. The site supports both Phantom and Solflare.</p>
+    <p>Visit the <a href="https://axmprotocol.io/launch">AXIOM Launchpad</a> and connect your Solana wallet. The site supports both Phantom and Solflare.</p>
   </div>
   <div class="step">
     <h4>Participate in Presale</h4>
@@ -1541,7 +1541,7 @@ ${CONFIG.distribution.map(d => `    <tr><td><strong>${d.name}</strong></td><td>$
 <div class="steps">
   <div class="step">
     <h4>Connect Your Wallet</h4>
-    <p>Connect your Solana wallet (Phantom or Solflare) to the AXIOM launchpad at <a href="https://axiomprotocol.io/launch">axiomprotocol.io/launch</a>.</p>
+    <p>Connect your Solana wallet (Phantom or Solflare) to the AXIOM launchpad at <a href="https://axmprotocol.io/launch">axmprotocol.io/launch</a>.</p>
   </div>
   <div class="step">
     <h4>Enter Contribution</h4>
@@ -1634,7 +1634,7 @@ ${CONFIG.distribution.map(d => `    <tr><td><strong>${d.name}</strong></td><td>$
 <div class="steps">
   <div class="step">
     <h4>Visit Staking Dashboard</h4>
-    <p>Go to the AXIOM staking dashboard at <a href="https://axiomprotocol.io/stake">axiomprotocol.io/stake</a>.</p>
+    <p>Go to the AXIOM staking dashboard at <a href="https://axmprotocol.io/stake">axmprotocol.io/stake</a>.</p>
   </div>
   <div class="step">
     <h4>Connect Your Wallet</h4>
@@ -1965,13 +1965,13 @@ ${CONFIG.distribution.map(d => `    <tr><td><strong>${d.name}</strong></td><td>$
 <div class="code-block">
   <div class="code-block-header"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
   <pre><span class="tok-cm"># Install the AXIOM SDK</span>
-<span class="tok-fn">npm install</span> @axiom-protocol/sdk @coral-xyz/anchor @solana/web3.js</pre>
+<span class="tok-fn">npm install</span> @axm-protocol/sdk @coral-xyz/anchor @solana/web3.js</pre>
 </div>
 
 <h2 id="quick-start-sdk">Quick Start</h2>
 <div class="code-block">
   <div class="code-block-header"><span>typescript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-  <pre><span class="tok-kw">import</span> { AxiomSDK } <span class="tok-kw">from</span> <span class="tok-str">"@axiom-protocol/sdk"</span>;
+  <pre><span class="tok-kw">import</span> { AxiomSDK } <span class="tok-kw">from</span> <span class="tok-str">"@axm-protocol/sdk"</span>;
 <span class="tok-kw">import</span> { Connection, PublicKey } <span class="tok-kw">from</span> <span class="tok-str">"@solana/web3.js"</span>;
 
 <span class="tok-cm">// 1. Initialize</span>
@@ -2009,7 +2009,7 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Staked:"</span>, 
 <h2 id="dev-setup">Development Setup</h2>
 <div class="code-block">
   <div class="code-block-header"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-  <pre><span class="tok-fn">git clone</span> https://github.com/axiom-protocol/axiom-launch.git
+  <pre><span class="tok-fn">git clone</span> https://github.com/axm-protocol/axiom-launch.git
 <span class="tok-fn">cd</span> axiom-launch
 <span class="tok-fn">chmod</span> +x setup.sh && ./setup.sh</pre>
 </div>
@@ -2036,7 +2036,7 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Staked:"</span>, 
 <h2 id="create-agent">Creating Your First Agent</h2>
 <div class="code-block">
   <div class="code-block-header"><span>typescript</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-  <pre><span class="tok-kw">import</span> { AxiomAgent, AgentConfig } <span class="tok-kw">from</span> <span class="tok-str">"@axiom-protocol/agent-sdk"</span>;
+  <pre><span class="tok-kw">import</span> { AxiomAgent, AgentConfig } <span class="tok-kw">from</span> <span class="tok-str">"@axm-protocol/agent-sdk"</span>;
 
 <span class="tok-cm">// 1. Configure your agent</span>
 <span class="tok-kw">const</span> config: <span class="tok-type">AgentConfig</span> = {
@@ -2087,7 +2087,7 @@ agent.<span class="tok-fn">start</span>();</pre>
 
 <div class="callout tip">
   <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Agent SDK</div>
-  <div class="callout-body">Full Agent SDK docs and starter templates: <code>@axiom-protocol/agent-sdk</code>. Join <a href="https://discord.gg/axiomprotocol" target="_blank">Discord</a> for dev support.</div>
+  <div class="callout-body">Full Agent SDK docs and starter templates: <code>@axm-protocol/agent-sdk</code>. Join <a href="https://discord.gg/axmprotocol" target="_blank">Discord</a> for dev support.</div>
 </div>
 `,
 
@@ -2214,7 +2214,7 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Status:"</span>, 
 
 <div class="callout tip">
   <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg> Report Vulnerabilities</div>
-  <div class="callout-body">If you find a security vulnerability, please report it responsibly to <strong>security@axiomprotocol.io</strong>. We take all reports seriously and will respond within 24 hours.</div>
+  <div class="callout-body">If you find a security vulnerability, please report it responsibly to <strong>security@axmprotocol.io</strong>. We take all reports seriously and will respond within 24 hours.</div>
 </div>
 `,
 
@@ -2224,60 +2224,60 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Status:"</span>, 
 
 <h2 id="official-channels">Official Channels</h2>
 <div class="link-grid">
-  <a href="https://axiomprotocol.io" target="_blank" class="link-card">
+  <a href="https://axmprotocol.io" target="_blank" class="link-card">
     <div class="link-card-icon">🌐</div>
     <div>
       <div class="link-card-text">Website</div>
-      <div class="link-card-url">axiomprotocol.io</div>
+      <div class="link-card-url">axmprotocol.io</div>
     </div>
   </a>
-  <a href="https://axiomprotocol.io/launch" target="_blank" class="link-card">
+  <a href="https://axmprotocol.io/launch" target="_blank" class="link-card">
     <div class="link-card-icon">🚀</div>
     <div>
       <div class="link-card-text">Launchpad</div>
-      <div class="link-card-url">axiomprotocol.io/launch</div>
+      <div class="link-card-url">axmprotocol.io/launch</div>
     </div>
   </a>
-  <a href="https://x.com/axiom_protocol" target="_blank" class="link-card">
+  <a href="https://x.com/axm_protocol" target="_blank" class="link-card">
     <div class="link-card-icon">𝕏</div>
     <div>
       <div class="link-card-text">X / Twitter</div>
-      <div class="link-card-url">x.com/axiom_protocol</div>
+      <div class="link-card-url">x.com/axm_protocol</div>
     </div>
   </a>
-  <a href="https://discord.gg/axiomprotocol" target="_blank" class="link-card">
+  <a href="https://discord.gg/axmprotocol" target="_blank" class="link-card">
     <div class="link-card-icon">💬</div>
     <div>
       <div class="link-card-text">Discord</div>
-      <div class="link-card-url">discord.gg/axiomprotocol</div>
+      <div class="link-card-url">discord.gg/axmprotocol</div>
     </div>
   </a>
-  <a href="https://t.me/axiomprotocol" target="_blank" class="link-card">
+  <a href="https://t.me/axmprotocol" target="_blank" class="link-card">
     <div class="link-card-icon">✈️</div>
     <div>
       <div class="link-card-text">Telegram</div>
-      <div class="link-card-url">t.me/axiomprotocol</div>
+      <div class="link-card-url">t.me/axmprotocol</div>
     </div>
   </a>
-  <a href="https://github.com/axiom-protocol" target="_blank" class="link-card">
+  <a href="https://github.com/axm-protocol" target="_blank" class="link-card">
     <div class="link-card-icon">🐙</div>
     <div>
       <div class="link-card-text">GitHub</div>
-      <div class="link-card-url">github.com/axiom-protocol</div>
+      <div class="link-card-url">github.com/axm-protocol</div>
     </div>
   </a>
-  <a href="https://medium.com/@axiomprotocol" target="_blank" class="link-card">
+  <a href="https://medium.com/@axmprotocol" target="_blank" class="link-card">
     <div class="link-card-icon">📝</div>
     <div>
       <div class="link-card-text">Medium</div>
-      <div class="link-card-url">medium.com/@axiomprotocol</div>
+      <div class="link-card-url">medium.com/@axmprotocol</div>
     </div>
   </a>
-  <a href="https://axiomprotocol.io/whitepaper.pdf" target="_blank" class="link-card">
+  <a href="https://axmprotocol.io/whitepaper.pdf" target="_blank" class="link-card">
     <div class="link-card-icon">📄</div>
     <div>
       <div class="link-card-text">Whitepaper</div>
-      <div class="link-card-url">axiomprotocol.io/whitepaper.pdf</div>
+      <div class="link-card-url">axmprotocol.io/whitepaper.pdf</div>
     </div>
   </a>
 </div>
