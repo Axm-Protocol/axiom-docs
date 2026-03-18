@@ -1153,6 +1153,47 @@ a:hover { opacity: 0.8; }
 </div>
 
 <script>
+// ===== CONFIG =====
+const CONFIG = {
+  token: {
+    name: 'AXIOM',
+    symbol: 'AXM',
+    totalSupply: 1_000_000_000,
+    standard: 'Token-2022',
+  },
+  presale: {
+    allocation: 50_000_000,
+    allocationPercent: 5,
+    hardCap: 1000,
+    softCap: 200,
+    minContribution: 0.1,
+    maxContribution: 10,
+    startDate: 'March 25, 2026 00:00 UTC',
+    endDate: 'March 28, 2026 00:00 UTC',
+    devAllocationPercent: 20,
+    dateRange: 'March 25\u201328, 2026',
+  },
+  distribution: [
+    { name: 'Community &amp; Ecosystem', percent: 25, details: 'Grants, partnerships, community incentives' },
+    { name: 'Dev / Founding Team', percent: 20, details: '4-year vest, 1-year cliff' },
+    { name: 'Staking Rewards', percent: 20, details: 'Distributed to stakers over time' },
+    { name: 'Protocol Treasury', percent: 15, details: 'DAO-controlled multi-sig' },
+    { name: 'Initial Liquidity (Meteora)', percent: 10, details: 'Permanently locked on Meteora DAMM v1' },
+    { name: 'Advisors', percent: 5, details: '2-year vest, 6-month cliff' },
+    { name: 'Airdrop', percent: 5, details: 'Early community members' },
+  ],
+  staking: {
+    rewardPool: 200_000_000,
+  },
+  links: {
+    github: 'https://github.com/axiom-protocol',
+    website: 'https://axiomprotocol.io',
+  }
+};
+
+function fmt(n) { return n.toLocaleString('en-US'); }
+function devTokens() { return CONFIG.presale.allocation * CONFIG.presale.devAllocationPercent / 100; }
+
 // ===== PAGE DATA =====
 const SECTIONS = [
   {
@@ -1246,7 +1287,7 @@ function getPageContent(id) {
 
 <div class="callout info">
   <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Token Contract</div>
-  <div class="callout-body">AXM uses the <strong>Token-2022</strong> standard. Total supply: 1,000,000,000. Mint authority permanently revoked — no new tokens can ever be created.</div>
+  <div class="callout-body">AXM uses the <strong>${CONFIG.token.standard}</strong> standard. Total supply: ${fmt(CONFIG.token.totalSupply)}. Mint authority permanently revoked — no new tokens can ever be created.</div>
 </div>
 `,
 
@@ -1256,7 +1297,7 @@ function getPageContent(id) {
 
 <div class="callout info">
   <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Presale is LIVE</div>
-  <div class="callout-body">The presale is LIVE from <strong>March 25–28, 2026</strong>. Hard cap: 1,000 SOL. Soft cap: 200 SOL. Don't miss it!</div>
+  <div class="callout-body">The presale is LIVE from <strong>${CONFIG.presale.dateRange}</strong>. Hard cap: ${fmt(CONFIG.presale.hardCap)} SOL. Soft cap: ${fmt(CONFIG.presale.softCap)} SOL. Don't miss it!</div>
 </div>
 
 <h2 id="setup-steps">Setup Steps</h2>
@@ -1271,7 +1312,7 @@ function getPageContent(id) {
   </div>
   <div class="step">
     <h4>Participate in Presale</h4>
-    <p>Contribute SOL during the presale window. Minimum contribution is 0.1 SOL, maximum is 10 SOL per wallet. Enter the amount and confirm in your wallet.</p>
+    <p>Contribute SOL during the presale window. Minimum contribution is ${CONFIG.presale.minContribution} SOL, maximum is ${CONFIG.presale.maxContribution} SOL per wallet. Enter the amount and confirm in your wallet.</p>
   </div>
   <div class="step">
     <h4>Claim Tokens</h4>
@@ -1279,7 +1320,7 @@ function getPageContent(id) {
   </div>
   <div class="step">
     <h4>Stake &amp; Earn</h4>
-    <p>Stake your AXM tokens to earn a share of the 200M staking reward pool and participate in protocol governance. Visit the staking dashboard to get started.</p>
+    <p>Stake your AXM tokens to earn a share of the ${fmt(CONFIG.staking.rewardPool)} AXM staking reward pool and participate in protocol governance. Visit the staking dashboard to get started.</p>
   </div>
 </div>
 
@@ -1352,7 +1393,7 @@ function getPageContent(id) {
   <thead><tr><th>Use Case</th><th>Description</th><th>Requirement</th></tr></thead>
   <tbody>
     <tr><td><strong>🤖 Agent Deployment</strong></td><td>Stake AXM to deploy AI agents on the marketplace</td><td>Min. 10,000 AXM staked</td></tr>
-    <tr><td><strong>💎 Staking Rewards</strong></td><td>Earn from the 200M staking pool proportionally</td><td>Any amount</td></tr>
+    <tr><td><strong>💎 Staking Rewards</strong></td><td>Earn from the ${fmt(CONFIG.staking.rewardPool)} staking pool proportionally</td><td>Any amount</td></tr>
     <tr><td><strong>🏛️ Governance Voting</strong></td><td>Vote on protocol upgrades, treasury spending, fees</td><td>Must be staked</td></tr>
     <tr><td><strong>🏠 RWA Access</strong></td><td>Access tokenized real-world assets through AI agents</td><td>Hold AXM</td></tr>
     <tr><td><strong>💰 Fee Sharing</strong></td><td>Stakers receive protocol revenue from marketplace fees</td><td>30-day min stake</td></tr>
@@ -1383,29 +1424,23 @@ function getPageContent(id) {
 
 <h2 id="supply-mechanics">Supply Mechanics</h2>
 <ul>
-  <li><strong>Fixed supply:</strong> 1,000,000,000 AXM — no inflation, ever. Mint authority permanently revoked.</li>
+  <li><strong>Fixed supply:</strong> ${fmt(CONFIG.token.totalSupply)} AXM — no inflation, ever. Mint authority permanently revoked.</li>
   <li><strong>Deflationary:</strong> A portion of marketplace fees are burned, reducing circulating supply over time.</li>
-  <li><strong>Locked liquidity:</strong> 100M AXM permanently locked in the Meteora pool.</li>
+  <li><strong>Locked liquidity:</strong> ${fmt(CONFIG.token.totalSupply * 10 / 100)} AXM permanently locked in the Meteora pool.</li>
   <li><strong>Vested tokens:</strong> Team (20%) and advisor (5%) locked with on-chain vesting.</li>
 </ul>
 `,
 
 // ===== TOKENOMICS =====
 'tokenomics': `
-<p class="lead">AXIOM has a fixed supply of <strong>1,000,000,000 AXM</strong> (1 billion tokens). Mint authority is revoked after launch — no new tokens can ever be created.</p>
+<p class="lead">AXIOM has a fixed supply of <strong>${fmt(CONFIG.token.totalSupply)} AXM</strong> (${fmt(CONFIG.token.totalSupply)} tokens). Mint authority is revoked after launch — no new tokens can ever be created.</p>
 
 <h2 id="distribution">Token Distribution</h2>
 <div class="table-wrap">
 <table>
   <thead><tr><th>Allocation</th><th>%</th><th>Amount</th><th>Details</th></tr></thead>
   <tbody>
-    <tr><td><strong>Community &amp; Ecosystem</strong></td><td>25%</td><td>250,000,000</td><td>Grants, partnerships, community incentives</td></tr>
-    <tr><td><strong>Dev / Founding Team</strong></td><td>20%</td><td>200,000,000</td><td>4-year vest, 1-year cliff</td></tr>
-    <tr><td><strong>Staking Rewards</strong></td><td>20%</td><td>200,000,000</td><td>Distributed to stakers over time</td></tr>
-    <tr><td><strong>Protocol Treasury</strong></td><td>15%</td><td>150,000,000</td><td>DAO-controlled multi-sig</td></tr>
-    <tr><td><strong>Initial Liquidity (Meteora)</strong></td><td>10%</td><td>100,000,000</td><td>Permanently locked on Meteora DAMM v1</td></tr>
-    <tr><td><strong>Advisors</strong></td><td>5%</td><td>50,000,000</td><td>2-year vest, 6-month cliff</td></tr>
-    <tr><td><strong>Airdrop</strong></td><td>5%</td><td>50,000,000</td><td>Early community members</td></tr>
+${CONFIG.distribution.map(d => `    <tr><td><strong>${d.name}</strong></td><td>${d.percent}%</td><td>${fmt(CONFIG.token.totalSupply * d.percent / 100)}</td><td>${d.details}</td></tr>`).join('\n')}
   </tbody>
 </table>
 </div>
@@ -1491,13 +1526,13 @@ function getPageContent(id) {
 <table>
   <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
   <tbody>
-    <tr><td><strong>Allocation</strong></td><td>50,000,000 AXM (5% of total supply)</td></tr>
-    <tr><td><strong>Hard Cap</strong></td><td>1,000 SOL</td></tr>
-    <tr><td><strong>Soft Cap</strong></td><td>200 SOL</td></tr>
-    <tr><td><strong>Contribution Range</strong></td><td>0.1 – 10 SOL per wallet</td></tr>
-    <tr><td><strong>Start Date</strong></td><td>March 25, 2026 00:00 UTC</td></tr>
-    <tr><td><strong>End Date</strong></td><td>March 28, 2026 00:00 UTC</td></tr>
-    <tr><td><strong>Dev Allocation</strong></td><td>20% of presale tokens (10M AXM)</td></tr>
+    <tr><td><strong>Allocation</strong></td><td>${fmt(CONFIG.presale.allocation)} AXM (${CONFIG.presale.allocationPercent}% of total supply)</td></tr>
+    <tr><td><strong>Hard Cap</strong></td><td>${fmt(CONFIG.presale.hardCap)} SOL</td></tr>
+    <tr><td><strong>Soft Cap</strong></td><td>${fmt(CONFIG.presale.softCap)} SOL</td></tr>
+    <tr><td><strong>Contribution Range</strong></td><td>${CONFIG.presale.minContribution} – ${CONFIG.presale.maxContribution} SOL per wallet</td></tr>
+    <tr><td><strong>Start Date</strong></td><td>${CONFIG.presale.startDate}</td></tr>
+    <tr><td><strong>End Date</strong></td><td>${CONFIG.presale.endDate}</td></tr>
+    <tr><td><strong>Dev Allocation</strong></td><td>${CONFIG.presale.devAllocationPercent}% of presale tokens (${fmt(devTokens())} AXM)</td></tr>
   </tbody>
 </table>
 </div>
@@ -1510,7 +1545,7 @@ function getPageContent(id) {
   </div>
   <div class="step">
     <h4>Enter Contribution</h4>
-    <p>Enter your SOL contribution amount (minimum 0.1 SOL, maximum 10 SOL per wallet).</p>
+    <p>Enter your SOL contribution amount (minimum ${CONFIG.presale.minContribution} SOL, maximum ${CONFIG.presale.maxContribution} SOL per wallet).</p>
   </div>
   <div class="step">
     <h4>Confirm Transaction</h4>
@@ -1522,7 +1557,7 @@ function getPageContent(id) {
   </div>
   <div class="step">
     <h4>Soft Cap Met → Claim AXM</h4>
-    <p>If the soft cap (200 SOL) is reached, the Meteora pool is created. Return to the launchpad and claim your AXM tokens.</p>
+    <p>If the soft cap (${fmt(CONFIG.presale.softCap)} SOL) is reached, the Meteora pool is created. Return to the launchpad and claim your AXM tokens.</p>
   </div>
   <div class="step">
     <h4>Soft Cap NOT Met → Full Refund</h4>
@@ -1532,7 +1567,7 @@ function getPageContent(id) {
 
 <div class="callout warning">
   <div class="callout-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Refund Policy</div>
-  <div class="callout-body">If the presale does not reach the 200 SOL soft cap, all contributions are fully refundable. Use the "Claim Refund" function on the launchpad.</div>
+  <div class="callout-body">If the presale does not reach the ${fmt(CONFIG.presale.softCap)} SOL soft cap, all contributions are fully refundable. Use the "Claim Refund" function on the launchpad.</div>
 </div>
 `,
 
@@ -1585,11 +1620,11 @@ function getPageContent(id) {
 
 // ===== STAKING =====
 'staking': `
-<p class="lead">Stake your AXM tokens to earn a share of the 200,000,000 AXM staking reward pool and participate in protocol governance.</p>
+<p class="lead">Stake your AXM tokens to earn a share of the ${fmt(CONFIG.staking.rewardPool)} AXM staking reward pool and participate in protocol governance.</p>
 
 <h2 id="overview">Overview</h2>
 <ul>
-  <li>Stake AXM to earn a share of the <strong>200M staking reward pool</strong></li>
+  <li>Stake AXM to earn a share of the <strong>${fmt(CONFIG.staking.rewardPool)} AXM staking reward pool</strong></li>
   <li>Staking locks your tokens in the on-chain staking vault</li>
   <li>Rewards are distributed proportionally based on your share of total staked</li>
   <li>Unstaking has a <strong>7-day cooldown period</strong></li>
@@ -1802,7 +1837,7 @@ function getPageContent(id) {
 <h2 id="presale-contract">Presale Contract</h2>
 <div class="func-item">
   <div class="func-sig">contribute(amount: u64)</div>
-  <div class="func-desc">Contribute SOL to the presale. Amount must be between 0.1 and 10 SOL. Wallet must not exceed the per-wallet contribution limit.</div>
+  <div class="func-desc">Contribute SOL to the presale. Amount must be between ${CONFIG.presale.minContribution} and ${CONFIG.presale.maxContribution} SOL. Wallet must not exceed the per-wallet contribution limit.</div>
 </div>
 <div class="func-item">
   <div class="func-sig">claim_tokens()</div>
@@ -1974,7 +2009,7 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Staked:"</span>, 
 <h2 id="dev-setup">Development Setup</h2>
 <div class="code-block">
   <div class="code-block-header"><span>bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-  <pre><span class="tok-fn">git clone</span> https://github.com/AliceTechX/axiom-launch.git
+  <pre><span class="tok-fn">git clone</span> https://github.com/axiom-protocol/axiom-launch.git
 <span class="tok-fn">cd</span> axiom-launch
 <span class="tok-fn">chmod</span> +x setup.sh && ./setup.sh</pre>
 </div>
@@ -2115,7 +2150,7 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Status:"</span>, 
 </div>
 <div class="accordion-item" onclick="toggleAccordion(this)">
   <button class="accordion-trigger">When is the presale? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-  <div class="accordion-body"><div class="accordion-body-inner">March 25–28, 2026. Hard cap 1,000 SOL, soft cap 200 SOL. Contribution range: 0.1–10 SOL per wallet. Visit the <a href="#/presale">Presale Details</a> page for more info.</div></div>
+  <div class="accordion-body"><div class="accordion-body-inner">${CONFIG.presale.dateRange}. Hard cap ${fmt(CONFIG.presale.hardCap)} SOL, soft cap ${fmt(CONFIG.presale.softCap)} SOL. Contribution range: ${CONFIG.presale.minContribution}–${CONFIG.presale.maxContribution} SOL per wallet. Visit the <a href="#/presale">Presale Details</a> page for more info.</div></div>
 </div>
 <div class="accordion-item" onclick="toggleAccordion(this)">
   <button class="accordion-trigger">What happens if the soft cap isn't met? <svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -2224,11 +2259,11 @@ console.<span class="tok-fn">log</span>(<span class="tok-str">"Status:"</span>, 
       <div class="link-card-url">t.me/axiomprotocol</div>
     </div>
   </a>
-  <a href="https://github.com/AliceTechX" target="_blank" class="link-card">
+  <a href="https://github.com/axiom-protocol" target="_blank" class="link-card">
     <div class="link-card-icon">🐙</div>
     <div>
       <div class="link-card-text">GitHub</div>
-      <div class="link-card-url">github.com/AliceTechX</div>
+      <div class="link-card-url">github.com/axiom-protocol</div>
     </div>
   </a>
   <a href="https://medium.com/@axiomprotocol" target="_blank" class="link-card">
